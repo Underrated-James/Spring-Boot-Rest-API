@@ -22,12 +22,17 @@ public class UserController {
 
     @GetMapping("/users")
     public List<UserDto> getAllUsers(
-            @RequestParam(required = false, defaultValue = "") String sort
+            @RequestParam(required = false) String sort,
+            @RequestParam(required = false) List<String> roleById
     ){
-        if(!Set.of("phoneNumber", "id", "name", "email", "createdAt").contains(sort)){
-            sort = "id";
+        Sort sortOrder = (sort != null && sort.isBlank()) ? Sort.by(sort) : Sort.by("name");
+
+        List<User> user;
+        if(roleById != null){
+            user = UserRepository.findByRoleByIdIn(roleById, sortOrder);
+        } else {
+            user = UserRepository.findAll(sortOrder);
         }
-        var user = UserRepository.findAll(Sort.by(sort));
 
         return user.stream()
                 .map(UserMapper::toDto)
