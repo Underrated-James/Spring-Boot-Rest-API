@@ -1,23 +1,25 @@
 package com.example.MVC.Entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "users")
+import java.time.LocalDateTime;
+
+@Document(collection = "products")
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
+@NoArgsConstructor
+public class Product {
 
     @Id
     private String id;
     private String name;
-    private String email;
-    private String address;
-    private String phoneNumber;
-    private String roleById;
-
+    private String description;
+    private double price;
+    private String categoryId;
+    private LocalDateTime createdAt;
 }

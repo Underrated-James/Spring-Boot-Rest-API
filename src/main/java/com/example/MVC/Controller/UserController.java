@@ -1,49 +1,36 @@
 package com.example.MVC.Controller;
 
 import com.example.MVC.Dtos.UserDto;
-import com.example.MVC.Entities.User;
-import com.example.MVC.Mappers.UserMapper;
-import com.example.MVC.Repository.UserRepository;
-import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Sort;
+import com.example.MVC.Services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
 
-    private final UserRepository UserRepository;
-    private final UserMapper UserMapper;
+    private final UserService userService; // inject the service
 
+    // GET /api/users?roleById=ADMIN&sort=name
     @GetMapping("/users")
     public List<UserDto> getAllUsers(
-            @RequestParam(required = false, defaultValue = "") String sort
-    ){
-        if(!Set.of("phoneNumber", "id", "name", "email", "createdAt").contains(sort)){
-            sort = "id";
-        }
-        var user = UserRepository.findAll(Sort.by(sort));
-
-        return user.stream()
-                .map(UserMapper::toDto)
-                .toList();
+            @RequestParam(required = false, name = "roleById") List<String> roles,
+            @RequestParam(required = false, defaultValue = "name") String sort
+    ) {
+        return userService.getUsers(roles, sort); // delegate to service
     }
 
+    // GET /api/users/{id}
     @GetMapping("/users/{id}")
-    public ResponseEntity<UserDto> getUserByID(@PathVariable String id){
-       var user = UserRepository.findById(id).orElse(null);
-
-       if(user == null){
-           return ResponseEntity.notFound().build();
-       }
-       var userDto = UserMapper.toDto(user);
-         return ResponseEntity.ok(userDto);
+    public ResponseEntity<UserDto> getUserByID(@PathVariable String id) {
+        UserDto userDto = userService.getUserById(id);
+        if(userDto == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(userDto); // delegate to service
     }
-
-
 }
