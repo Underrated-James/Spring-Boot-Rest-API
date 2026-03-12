@@ -35,4 +35,10 @@ public class UserController {
         }
         return ResponseEntity.ok(userDto); // delegate to service
     }
+
+    //Post Create User
+    @PostMapping("/users")
+    public UserDto createUser(@RequestBody UserDto data) {
+        return data;
+    }
 }
