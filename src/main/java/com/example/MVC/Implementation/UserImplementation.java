@@ -1,7 +1,8 @@
 // UserServiceImpl.java
 package com.example.MVC.Implementation;
 
-import com.example.MVC.Dtos.UserDto;
+import com.example.MVC.Dtos.Request.RegisterUserRequest;
+import com.example.MVC.Dtos.Response.UserDto;
 import com.example.MVC.Entities.User;
 import com.example.MVC.Mappers.UserMapper;
 import com.example.MVC.Services.UserService;
@@ -45,5 +46,12 @@ public class UserImplementation implements UserService {
         User user = mongoTemplate.findById(id, User.class, "users");
         if (user == null) return null;
         return UserMapper.toDto(user);
+    }
+
+    @Override
+    public UserDto createUser(RegisterUserRequest request) {
+        User user = UserMapper.toEntity(request);
+        User savedUser = mongoTemplate.save(user, "users");
+        return UserMapper.toDto(savedUser);
     }
 }

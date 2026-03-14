@@ -1,10 +1,13 @@
 package com.example.MVC.Controller;
 
-import com.example.MVC.Dtos.UserDto;
+import com.example.MVC.Dtos.Request.RegisterUserRequest;
+import com.example.MVC.Dtos.Response.UserDto;
+import com.example.MVC.Mappers.UserMapper;
 import com.example.MVC.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -14,6 +17,7 @@ import java.util.List;
 public class UserController {
 
     private final UserService userService; // inject the service
+    private final UserMapper userMapper;
 
     // GET /api/users?roleById=ADMIN&sort=name
     @GetMapping("/users")
@@ -38,7 +42,14 @@ public class UserController {
 
     //Post Create User
     @PostMapping("/users")
-    public UserDto createUser(@RequestBody UserDto data) {
-        return data;
+    public ResponseEntity<UserDto> createUser(
+            @RequestBody RegisterUserRequest request,
+            UriComponentsBuilder uriComponentsBuilder
+    ) {
+        System.out.println("Received create user request: " + request); // log the request for debugging
+        UserDto createdUser = userService.createUser(request);
+        var uri  = uriComponentsBuilder.path("/users/{id}").buildAndExpand(createdUser.getId());
+        System.out.println("Creating user: " + createdUser); // log the user for debugging
+        return ResponseEntity.created(uri.toUri()).body(createdUser); // delegate to service
     }
 }
