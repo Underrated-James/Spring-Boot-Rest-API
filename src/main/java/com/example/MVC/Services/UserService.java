@@ -1,11 +1,15 @@
 // UserService.java
 package com.example.MVC.Services;
 
-import com.example.MVC.Dtos.UserDto;
+import com.example.MVC.Dtos.Request.UserRequest;
+import com.example.MVC.Dtos.Response.UserResponse;
+
 import java.util.List;
 
 public interface UserService {
-    List<UserDto> getUsers(List<String> roles, String sort);
+    List<UserResponse> getUsers(List<String> roles, String sort);
 
-    UserDto getUserById(String id);
+    UserResponse getUserById(String id);
+
+    UserResponse createUser(UserRequest userRequest);
 }

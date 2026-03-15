@@ -1,4 +1,4 @@
-package com.example.MVC.Dtos;
+package com.example.MVC.Dtos.Response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 
-public class UserDto {
+public class UserResponse {
 
     private String id;
     private String name;
