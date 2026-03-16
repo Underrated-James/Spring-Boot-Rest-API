@@ -1,15 +1,17 @@
 package com.example.MVC.Controller;
 
 
-import com.example.MVC.Dtos.ProductDto;
+import com.example.MVC.Dtos.Request.ProductRequest;
+import com.example.MVC.Dtos.Response.ProductResponse;
 import com.example.MVC.Entities.Product;
 import com.example.MVC.Mappers.ProductMapper;
 import com.example.MVC.Repository.ProductRepository;
+import com.example.MVC.Services.ProductService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -18,22 +20,38 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
 
-    private final ProductRepository productRepository;
-    private final ProductMapper productMapper;
+    private final ProductService productService;
 
 
     @GetMapping("/products")
-    public List<ProductDto> getAllProducts (
+    public List<ProductResponse> getAllProducts (
             @RequestParam(required = false, name = "categoryId") List<String> categoryId,
-            @RequestParam(required = false) String sort
+            @RequestParam(required = false, defaultValue = "name") String sort
     ){
-        List<Product> products;
-        if(categoryId == null || categoryId.isEmpty()){
-            products = productRepository.findAll();
-        }else {
-            products = productRepository.findByCategoryIdIn(categoryId);
-        }
-
-        return products.stream().map(productMapper::toDto).toList();
+        System.out.println(categoryId + sort);
+        return productService.getProducts(categoryId, sort);
     }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<ProductResponse> getProductById(@PathVariable String id){
+        ProductResponse productResponse = productService.getProductById(id);
+        if(productResponse == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(productResponse);
+    }
+
+    @PostMapping("/products")
+    public ResponseEntity<ProductResponse> createProduct(
+            @RequestBody ProductRequest productRequest,
+            UriComponentsBuilder uriComponentsBuilder
+    ){
+        //Create the Product
+        ProductResponse createdproduct = productService.createProduct(productRequest);
+        //Build the URI for the created product
+        var uri = uriComponentsBuilder.path("/api/products/{id}").buildAndExpand(createdproduct.getId()).toUri();
+        //Return the created product with the URI 201 Created
+        return ResponseEntity.created(uri).body(createdproduct);
+    }
+
 }
