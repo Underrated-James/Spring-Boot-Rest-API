@@ -5,6 +5,7 @@ import com.example.MVC.Dtos.Request.UserRequest;
 import com.example.MVC.Dtos.Response.UserResponse;
 import com.example.MVC.Entities.User;
 import com.example.MVC.Mappers.UserMapper;
+import com.example.MVC.Repository.UserRepository;
 import com.example.MVC.Services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
@@ -21,6 +22,7 @@ public class UserImplementation implements UserService {
 
     private final MongoTemplate mongoTemplate;
     private final UserMapper UserMapper;
+    private final UserRepository userRepository;
 
     @Override
     public List<UserResponse> getUsers(List<String> roles, String sortField) {
@@ -49,9 +51,18 @@ public class UserImplementation implements UserService {
     @Override
     public UserResponse createUser(UserRequest userRequest) {
         User user = UserMapper.toEntity(userRequest);
-        mongoTemplate.save(user, "User");
-        System.out.println(user);
-        return UserMapper.toDto(user);
+        User savedUser = userRepository.save(user);
+        System.out.println(savedUser);
+        return UserMapper.toDto(savedUser);
+    }
+
+    @Override
+    public UserResponse updateUser(String id, UserRequest userRequest) {
+        User user = mongoTemplate.findById(id, User.class, "User");
+        if(user == null) return null;
+        UserMapper.updateEntityFromDto(userRequest, user);
+        User savedUser = userRepository.save(user);
+        return UserMapper.toDto(savedUser);
     }
 
 }

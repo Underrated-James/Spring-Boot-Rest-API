@@ -17,6 +17,7 @@ public class UserController {
 
     private final UserService userService; // inject the service
 
+    // GET /api/users?roleById=ADMIN&sort=name
     @GetMapping("/users")
     public List<UserResponse> getAllUsers(
             @RequestHeader(name = "x-auth-token", required = false) String authToken,
@@ -55,5 +56,16 @@ public class UserController {
         return ResponseEntity
                 .created(uri)   // sets HTTP 201 + Location
                 .body(createdUser); // response body
+    }
+
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserResponse> updateUser(
+            @PathVariable String id,
+            @RequestBody UserRequest userRequest){
+        UserResponse user = userService.updateUser(id, userRequest);
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user);
     }
 }
