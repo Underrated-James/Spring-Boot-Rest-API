@@ -21,8 +21,6 @@ public class UserImplementation implements UserService {
 
     private final MongoTemplate mongoTemplate;
     private final UserMapper UserMapper;
-    private final UserMapper userMapper;
-
 
     @Override
     public List<UserResponse> getUsers(List<String> roles, String sortField) {
@@ -50,10 +48,10 @@ public class UserImplementation implements UserService {
 
     @Override
     public UserResponse createUser(UserRequest userRequest) {
-        User user = userMapper.toEntity(userRequest);
+        User user = UserMapper.toEntity(userRequest);
         mongoTemplate.save(user, "User");
         System.out.println(user);
-        return userMapper.toDto(user);
+        return UserMapper.toDto(user);
     }
 
 }

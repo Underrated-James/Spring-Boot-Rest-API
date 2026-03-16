@@ -17,22 +17,6 @@ public class UserController {
 
     private final UserService userService; // inject the service
 
-        /**
-     * Retrieves a list of users, with optional filtering by role and sorting.
-     * <p>
-     * This endpoint handles GET requests to "/users" and returns a list of {@link UserResponse} objects.
-     * It allows for filtering users by their roles and sorting the results based on a specified field.
-     * An example request might look like: {@code GET /api/users?roleById=ADMIN&sort=name}
-     *
-     * @param authToken An optional authentication token passed in the "x-auth-token" request header.
-     *                  It is currently logged for debugging purposes.
-     * @param roles     An optional list of role names to filter the users by. The query parameter is "roleById".
-     *                  For example, {@code ?roleById=ADMIN&roleById=USER}.
-     * @param sort      An optional parameter to specify the sorting field for the user list.
-     *                  Defaults to "name" if not provided.
-     * @return A list of {@link UserResponse} objects representing the users that match the filter criteria,
-     *         sorted as requested.
-     */
     @GetMapping("/users")
     public List<UserResponse> getAllUsers(
             @RequestHeader(name = "x-auth-token", required = false) String authToken,
