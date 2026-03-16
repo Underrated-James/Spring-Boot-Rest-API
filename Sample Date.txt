@@ -1,92 +1,112 @@
 -
 User Sample Data
 [
-    {
-        "id": "69b7690c9042422ab55e771a",
-        "name": "Angela Cruz",
-        "email": "angela.cruz@example.com",
-        "phoneNumber": "+63 919 555 6666",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "USER"
-    },
-    {
-        "id": "69b7690c9042422ab55e7719",
-        "name": "Carlos Reyes",
-        "email": "carlos.reyes@example.com",
-        "phoneNumber": "+63 918 333 4444",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "ADMIN"
-    },
-    {
-        "id": "69b7690c9042422ab55e7715",
-        "name": "Dexter James Quinay",
-        "email": "dexter.james@example.com",
-        "phoneNumber": "+63 912 345 6789",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "ADMIN"
-    },
-    {
-        "id": "69b7690c9042422ab55e771e",
-        "name": "Elena Cruz",
-        "email": "elena.cruz@example.com",
-        "phoneNumber": "+63 923 890 1234",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "MANAGER"
-    },
-    {
-        "id": "69b7690c9042422ab55e7716",
-        "name": "Jane Doe",
-        "email": "jane.doe@example.com",
-        "phoneNumber": "+63 912 987 6543",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "USER"
-    },
-    {
-        "id": "69b7690c9042422ab55e7717",
-        "name": "John Smith",
-        "email": "john.smith@example.com",
-        "phoneNumber": "+63 915 555 1234",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "MANAGER"
-    },
-    {
-        "id": "69b7690c9042422ab55e7718",
-        "name": "Maria Santos",
-        "email": "maria.santos@example.com",
-        "phoneNumber": "+63 917 111 2222",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "USER"
-    },
-    {
-        "id": "69b7690c9042422ab55e771b",
-        "name": "Miguel Tan",
-        "email": "miguel.tan@example.com",
-        "phoneNumber": "+63 920 777 8888",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "MANAGER"
-    },
-    {
-        "id": "69b7690c9042422ab55e771d",
-        "name": "Rafael Gomez",
-        "email": "rafael.gomez@example.com",
-        "phoneNumber": "+63 922 123 4567",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "ADMIN"
-    },
-    {
-        "id": "69b7690c9042422ab55e771c",
-        "name": "Sophia Lim",
-        "email": "sophia.lim@example.com",
-        "phoneNumber": "+63 921 999 0000",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "USER"
-    },
-    {
-        "id": "69b770c7cda60e7afb560991",
-        "name": "Test User",
-        "email": "test.user@example.com",
-        "phoneNumber": "+639123456789",
-        "createdAt": "16-03-2026 13:07:15",
-        "roleById": "USER"
-    }
+  {
+    "id": "69b90001c9558d6afa53d101",
+    "name": "Aaron Cruz",
+    "email": "aaron.cruz@example.com",
+    "phoneNumber": "+639171111001",
+    "createdAt": "17-03-2026 08:10:15",
+    "updatedAt": "2026-03-17T08:12:10.123",
+    "roleById": "USER"
+  },
+  {
+    "id": "69b90002c9558d6afa53d102",
+    "name": "Bianca Reyes",
+    "email": "bianca.reyes@example.com",
+    "phoneNumber": "+639171111002",
+    "createdAt": "17-03-2026 08:15:22",
+    "updatedAt": "2026-03-17T08:17:41.456",
+    "roleById": "MANAGER"
+  },
+  {
+    "id": "69b90003c9558d6afa53d103",
+    "name": "Carlos Mendoza",
+    "email": "carlos.mendoza@example.com",
+    "phoneNumber": "+639171111003",
+    "createdAt": "17-03-2026 08:21:09",
+    "updatedAt": "2026-03-17T08:23:55.789",
+    "roleById": "ADMIN"
+  },
+  {
+    "id": "69b90004c9558d6afa53d104",
+    "name": "Diana Flores",
+    "email": "diana.flores@example.com",
+    "phoneNumber": "+639171111004",
+    "createdAt": "17-03-2026 08:28:31",
+    "updatedAt": "2026-03-17T08:30:12.234",
+    "roleById": "USER"
+  },
+  {
+    "id": "69b90005c9558d6afa53d105",
+    "name": "Ethan Santos",
+    "email": "ethan.santos@example.com",
+    "phoneNumber": "+639171111005",
+    "createdAt": "17-03-2026 08:35:18",
+    "updatedAt": "2026-03-17T08:37:49.567",
+    "roleById": "MANAGER"
+  },
+  {
+    "id": "69b90006c9558d6afa53d106",
+    "name": "Faith Navarro",
+    "email": "faith.navarro@example.com",
+    "phoneNumber": "+639171111006",
+    "createdAt": "17-03-2026 08:42:44",
+    "updatedAt": "2026-03-17T08:44:30.890",
+    "roleById": "ADMIN"
+  },
+  {
+    "id": "69b90007c9558d6afa53d107",
+    "name": "Gabriel Ramos",
+    "email": "gabriel.ramos@example.com",
+    "phoneNumber": "+639171111007",
+    "createdAt": "17-03-2026 08:49:56",
+    "updatedAt": "2026-03-17T08:52:03.111",
+    "roleById": "USER"
+  },
+  {
+    "id": "69b90008c9558d6afa53d108",
+    "name": "Hannah Garcia",
+    "email": "hannah.garcia@example.com",
+    "phoneNumber": "+639171111008",
+    "createdAt": "17-03-2026 08:57:20",
+    "updatedAt": "2026-03-17T08:59:45.222",
+    "roleById": "MANAGER"
+  },
+  {
+    "id": "69b90009c9558d6afa53d109",
+    "name": "Ian Torres",
+    "email": "ian.torres@example.com",
+    "phoneNumber": "+639171111009",
+    "createdAt": "17-03-2026 09:03:14",
+    "updatedAt": "2026-03-17T09:05:33.333",
+    "roleById": "ADMIN"
+  },
+  {
+    "id": "69b90010c9558d6afa53d110",
+    "name": "Jasmine Lopez",
+    "email": "jasmine.lopez@example.com",
+    "phoneNumber": "+639171111010",
+    "createdAt": "17-03-2026 09:10:40",
+    "updatedAt": "2026-03-17T09:12:27.444",
+    "roleById": "USER"
+  },
+  {
+    "id": "69b90011c9558d6afa53d111",
+    "name": "Kevin Bautista",
+    "email": "kevin.bautista@example.com",
+    "phoneNumber": "+639171111011",
+    "createdAt": "17-03-2026 09:18:05",
+    "updatedAt": "2026-03-17T09:20:19.555",
+    "roleById": "MANAGER"
+  },
+  {
+    "id": "69b90012c9558d6afa53d112",
+    "name": "Lara Dominguez",
+    "email": "lara.dominguez@example.com",
+    "phoneNumber": "+639171111012",
+    "createdAt": "17-03-2026 09:25:48",
+    "updatedAt": "2026-03-17T09:27:50.666",
+    "roleById": "ADMIN"
+  }
 ]
