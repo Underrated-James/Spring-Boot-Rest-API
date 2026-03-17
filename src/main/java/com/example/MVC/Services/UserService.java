@@ -14,4 +14,6 @@ public interface UserService {
     UserResponse createUser(UserRequest userRequest);
 
     UserResponse updateUser(String id, UserRequest userRequest);
+
+    UserResponse deleteUser(String id);
 }
